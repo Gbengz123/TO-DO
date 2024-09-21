@@ -8,7 +8,7 @@ module.exports = {
     main: './src/index.js',
   },
   output: {                               //we use the content hash for keeping track of cache
-    filename: '[name].[contenthash].js', //this name value will be whatever the property name is on line 6
+    filename: '[name].[contenthash].js', //this name value will be whatever the property name is on line 8
     path: path.resolve(__dirname, 'dist'),
     clean: true, //cleans hash
     assetModuleFilename: '[name][ext]',//to maintain asset file name
@@ -37,6 +37,11 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      // for loading fonts
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
       // Babel laoder
       {

@@ -1,0 +1,152 @@
+/* makes sizing simpler */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* remove default spacing */
+/* force styling of type through styling, rather than elements */
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* dark mode user-agent-styles */
+
+html {
+  color-scheme: dark light;
+}
+
+/* min body height */
+body {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+/* responsive images/videos */
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src:
+    url('./assets/fonts/lato/Lato-Regular.ttf') 
+    format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  font-family: 'Lato';
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) minmax(500px, 1fr);
+  grid-template-areas: 
+    'aside main';
+}
+
+body > *{
+  border: 1px solid black;
+}
+
+h3{
+  font-size: x-large;
+  font-weight: bolder;
+  margin-bottom: 0.8em;
+}
+
+button{
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  font-size: large;
+  font-weight: bold;
+  text-align: left;
+  cursor: pointer;
+}
+
+aside{
+  grid-area: aside;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  color: white;
+  background-color: #1e293b;
+}
+
+aside .task-section, .project-section{
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  margin-top: 0.5em;
+}
+
+aside header{
+  display: flex;
+  align-self: center;
+  gap: 0.8em;
+}
+
+aside svg{
+  height: 30px;
+  width: auto;
+}
+
+.task-section header{
+  margin-bottom: 1.5em;
+}
+
+.task-section header svg{
+  height: 50px;
+  width: auto;
+}
+
+.task-section header h3{
+  margin: auto 0;
+}
+
+.task-section .side-nav, .project{
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0 1.7em;
+  height: 40px;
+  cursor: pointer;
+}
+
+.task-section .side-nav:hover, .project:hover {
+ background-color: #4a607b;
+}
+
+aside .project-section{
+  margin-top: 0;
+}
+
+.project-section .project span{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.project .num-task{
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  width: 25px;
+  height: 25px;
+  border: 2px solid white;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+main{
+  grid-area: main;
+}
