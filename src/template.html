@@ -40,6 +40,52 @@
     <main>
         <header></header>
         <section></section>
+        <div id="modalDialog">
+            <form id="addTaskForm">
+                <button id="closeModal" type="button">×</button>
+
+                <h2>New Task</h2>
+                
+                <div class="form-grp">
+                    <label for="name">Title</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-grp">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div> 
+
+                <div class="form-grp">
+                    <label>Priority:</label>
+                    <div>
+                        <input type="radio" id="high" name="priorities" value="high" required>
+                        <label for="high">High</label>
+                        <input type="radio" id="medium" name="priorities" value="medium">
+                        <label for="medium">Medium</label>
+                        <input type="radio" id="none" name="priorities" value="none">
+                        <label for="none">None</label>
+                    </div>
+                </div>
+
+                <div class="form-grp">
+                    <label for="dropdown">Select a Project:</label>
+                    <select id="dropdown" name="dropdown" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Option 1">Option 1</option>
+                        <option value="Option 2">Option 2</option>
+                        <option value="Option 3">Option 3</option>
+                    </select>
+                </div>
+
+                <div class="form-grp">
+                    <label for="dueDate">Due date:</label>
+                    <input type="date" id="dueDate" name="date" required>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </main>
 </body>
 </html>
