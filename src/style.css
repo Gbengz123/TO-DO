@@ -53,7 +53,6 @@ body{
 }
 
 body > *{
-  border: 1px solid black;
 }
 
 h3{
@@ -276,20 +275,20 @@ section .task-card{
   margin-right: auto;
 }
 
-.task-card-head .priority-icons{
+.task-card-head .task-card-icons{
   width: 80px;
   display: flex;
   justify-content: space-between;
 }
 
-.priority-icons .priority-icon{
+.task-card-icons .priority-icon{
   width: 20px;
   height: 20px;
   border: 1px solid black;
   border-radius: 50%;
 }
 
-.priority-icons svg{
+.task-card-icons svg{
   width: 20px;
   height: 20px;
 }
