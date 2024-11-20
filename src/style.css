@@ -352,3 +352,10 @@ section .project-tasks{
   font-size: medium;
   border: none;
 }
+
+.project-tasks-details .task-card-details p{
+  display: -webkit-box;      /* Required for line-clamp to work */
+  -webkit-line-clamp: 3;     /* Display only 4 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;          /* Hide text beyond the height */
+}
