@@ -1,14 +1,21 @@
 import './style.css';
-import inboxPageLoad from './inbox';
+import {inboxPageLoad} from './inbox';
+import tasksPageLoad from './tasksPage';
 
-const InboxBtn = document.querySelector('#InboxBtn')
-let currentPage =''
+const navButtons = document.querySelectorAll('.side-nav')
+let currentPage = ''
+let nextPage = ''
 
-InboxBtn.addEventListener('click', () => {
-    
-    if (currentPage ==! 'inboxPage') {
-        currentPage = inboxPageLoad()
-    }
+navButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        nextPage = e.target.id
+        console.log(nextPage)
+
+        if (nextPage === currentPage) return
+
+        if (nextPage === 'Inbox') {currentPage = inboxPageLoad()} 
+        if (nextPage === 'Tasks') {currentPage = tasksPageLoad()}
+    })
 })
 
 

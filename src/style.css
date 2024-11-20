@@ -251,7 +251,7 @@ main section{
   align-items: center;
 }
 
-section .task-card{
+section .task-card, section .project-tasks{
   width: 85%;
   background-color: white;
   border: 1px solid #e5e7eb;
@@ -264,12 +264,12 @@ section .task-card{
   padding: 17px 20px;
 }
 
-.task-card-head{
+.task-card-head, .project-tasks-head{
   display: flex;
   align-items: center;
 }
 
-.task-card-head h2{
+.task-card-head h2, .project-tasks-head h2{
   font-size: 1.2em;
   font-weight: bold;
   margin-right: auto;
@@ -288,13 +288,67 @@ section .task-card{
   border-radius: 50%;
 }
 
-.task-card-icons svg{
+.task-card-icons svg, .project-tasks-head svg{
   width: 20px;
   height: 20px;
 }
 
-main .task-card-details{
+section .task-card-details{
   border-top: 1px solid #9ca3af;
   padding: 10px;
   display: none;
+}
+
+section .project-tasks{
+  border-radius: 0px;
+  box-shadow: none;
+  max-height: 280px;
+  overflow: scroll;
+  padding: 0;
+  cursor: default;
+}
+
+.project-tasks::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
+}
+
+.project-tasks .project-tasks-head{
+  position: sticky;
+  top: 0;
+  background-color: white;
+  min-height: 50px;
+  margin: 0px 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+.project-tasks .project-tasks-details{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.project-tasks .tasks-details-container{
+  width: 90%;
+  margin: auto;
+  display: none;
+  margin-bottom: 10px;
+}
+
+.project-tasks-details .task-card{
+  margin: 0;
+  width: 100%;
+}
+
+.project-tasks-details .show-button{
+  padding: 8px 10px;
+  background-color: #1e293b;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: medium;
+  border: none;
 }
