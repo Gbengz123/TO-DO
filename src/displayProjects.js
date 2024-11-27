@@ -1,5 +1,6 @@
 import { navigate } from ".";
 import { createProjectCard, tasksPageLoad } from "./tasksPage";
+import { createTaskCard, showTaskDetail } from "./inbox";
 
 function displayProject(projectName){
     const asideProjectSection = document.querySelector('.project-section')
@@ -50,4 +51,15 @@ function displayProject(projectName){
     }   
 }
 
-export default displayProject
+function displayTask(project, title, priority){
+    // display on task page
+    const projectCard = document.querySelector(`#${project}-card`)
+    if (projectCard){
+        const taskCard = createTaskCard(title)
+        projectCard.querySelector('.task-container').appendChild(taskCard)
+    }
+
+    showTaskDetail()
+}
+
+export {displayProject, displayTask}

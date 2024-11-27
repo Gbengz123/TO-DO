@@ -34,7 +34,7 @@ function createHeadnSection(heading){
 }
 
 // Function to create a task card
-function createTaskCard() {
+function createTaskCard(title) {
 
     const taskCard = document.createElement('div');
     taskCard.classList.add('task-card');
@@ -42,7 +42,7 @@ function createTaskCard() {
     const taskCardHead = document.createElement('div');
     taskCardHead.classList.add('task-card-head');
     const h2 = document.createElement('h2');
-    h2.textContent = 'Task title';
+    h2.textContent = title;
     taskCardHead.appendChild(h2);
 
     const taskCardIcons = document.createElement('div');

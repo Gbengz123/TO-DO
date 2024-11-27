@@ -1,11 +1,11 @@
 import { projectModal } from ".";
-import displayProject from "./displayProjects";
+import {displayProject, displayTask} from "./displayProjects";
+import { formModal } from ".";
 
 let projectsData = {
     "projects": [
         // {
         //     "name": "Home",
-        //     "display": "false"
         //     "tasks": [
         //         { 
         //             "Title": "", 
@@ -59,7 +59,6 @@ function addProject() {
         // Create a new project object with the input name
         const newProject = {
             name: projectName,
-            display: false,
             tasks: [] // You can add tasks here if needed
         };
 
@@ -89,4 +88,45 @@ function addProject() {
     }
 }
 
-export {allTasksData, projectsData, addProject}
+function addTask(event){
+    event.preventDefault()
+
+    const form = event.target
+    const taskData = {}
+
+    for (let element of form.elements) {
+        if (element.type === 'radio') {
+            // Only process the checked radio button
+            if (element.checked) {
+                taskData[element.name] = element.value;
+            }
+        } else if (element.name) {
+            // Process other input types
+            taskData[element.name] = element.value;
+        }
+    }
+
+    form.reset()
+    formModal.close()
+
+    taskData.dateAdded = ""
+    taskData.completed = false
+
+    // get porjectsData form local storage
+    projectsData = JSON.parse(localStorage.getItem('projectsData'));
+
+    // add task to specific project category
+    projectsData.projects.forEach(project => {
+        if (project.name === taskData.project){
+            project.tasks.push(taskData)
+        }
+    })
+
+    // Store the updated data back to localStorage
+    localStorage.setItem('projectsData', JSON.stringify(projectsData));
+
+    // display task
+    displayTask(taskData.project, taskData.title, taskData.priority)
+}
+
+export {allTasksData, projectsData, addProject, addTask}

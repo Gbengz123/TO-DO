@@ -355,6 +355,13 @@ section .project-tasks{
   margin-bottom: 10px;
 }
 
+.project-tasks-details .task-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width : 100%
+}
+
 .project-tasks-details .task-card{
   margin: 0;
   width: 100%;

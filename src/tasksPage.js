@@ -19,8 +19,20 @@ function tasksPageLoad(){
                  return
              }
         }
-        projectTask = createProjectCard(project.name)
+        projectTask = createProjectCard(project.name, projectsData)
         taskSection.appendChild(projectTask)
+    })
+
+    // Dynamically add tasks to specific project category
+    projectsData.projects.forEach(project => {
+        if (project.tasks.length > 0){
+            project.tasks.forEach(task => {
+                console.log(task.project)
+                const projectCard = document.querySelector(`#${task.project}-card`)
+                const taskCards = createTaskCard(task.title);
+                projectCard.querySelector('.task-container').appendChild(taskCards)
+            })
+        }
     })
 
     const projectTasksHead = document.querySelectorAll('.project-tasks-head')
@@ -45,7 +57,7 @@ function tasksPageLoad(){
     return 'Tasks'
 }
 
-function createProjectCard(projectName){
+function createProjectCard(projectName, projectsData){
     const projectTask = document.createElement('div')
     projectTask.classList.add('project-tasks')
     projectTask.id = `${projectName}-card`
@@ -71,11 +83,11 @@ function createProjectCard(projectName){
 
     const projectTaskDetails = document.createElement('div')
     projectTaskDetails.classList.add('project-tasks-details')
-    // Dynamically create 5 task cards on the page
-    for (let i = 0; i < 5; i++) {
-        const taskCards = createTaskCard();
-        projectTaskDetails.appendChild(taskCards)
-    }
+
+    const taskContainer = document.createElement('div')
+    taskContainer.classList.add('task-container')
+        
+    projectTaskDetails.appendChild(taskContainer)
 
     const showBtn = document.createElement('button')
     showBtn.classList.add('show-button')

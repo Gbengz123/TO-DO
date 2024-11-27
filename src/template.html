@@ -47,7 +47,7 @@
             
             <div class="form-grp">
                 <label for="name">Title</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="title" name="title" required>
             </div>
 
             <div class="form-grp">
@@ -58,11 +58,11 @@
             <div class="form-grp">
                 <label>Priority:</label>
                 <div>
-                    <input type="radio" id="high" name="priorities" value="high" required>
+                    <input type="radio" id="high" name="priority" value="high" checked>
                     <label for="high">High</label>
-                    <input type="radio" id="medium" name="priorities" value="medium">
+                    <input type="radio" id="medium" name="priority" value="medium">
                     <label for="medium">Medium</label>
-                    <input type="radio" id="none" name="priorities" value="none">
+                    <input type="radio" id="none" name="priority" value="non">
                     <label for="none">None</label>
                 </div>
             </div>
@@ -70,14 +70,14 @@
 
             <div class="form-grp">
                 <label for="dropdown">Select a Project:</label>
-                <select id="dropdown" name="dropdown" required>
+                <select id="dropdown" name="project" required>
                     <option value="" disabled selected>Select a project</option>
                 </select>
             </div>
 
             <div class="form-grp">
                 <label for="dueDate">Due date:</label>
-                <input type="date" id="dueDate" name="date" required>
+                <input type="date" id="dueDate" name="due-date" >
             </div>
 
             <button type="submit">Submit</button>
