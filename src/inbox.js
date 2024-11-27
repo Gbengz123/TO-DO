@@ -29,6 +29,7 @@ function createHeadnSection(heading){
 
     // Create the section to hold task cards
     const section = document.createElement('section');
+    section.id = `${heading}-section`
     main.appendChild(section);
 }
 

@@ -1,33 +1,56 @@
 import './style.css';
 import {inboxPageLoad} from './inbox';
-import tasksPageLoad from './tasksPage';
+import {tasksPageLoad} from './tasksPage';
+import projectPageLoad from './projectPage';
+import { addProject } from './storage';
+import displayProject from './displayProjects';
 
 const navButtons = document.querySelectorAll('.side-nav')
-let currentPage = ''
+let currentPage = inboxPageLoad()
 let nextPage = ''
+const projectsData = JSON.parse(localStorage.getItem('projectsData'))
 
 navButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        nextPage = e.target.id
+    button.addEventListener('click', navigate)
+})
+
+// load projects from storage to DOM
+projectsData.projects.forEach(project => displayProject(project.name))
+
+const formModal = document.querySelector('#modalDialog');
+const formClosebtn = document.querySelector('#closeModal');
+const newTaskBtn = document.querySelector('.newTaskBtn');
+
+const projectModal = document.querySelector('#project-dialog')
+const projectModalCloseBtn = document.querySelector('#close-prjct-Modal')
+const submitPrjctBtn = document.querySelector('#submit-project-button')
+const addProjctBtn = document.querySelector('#add-project-button')
+
+newTaskBtn.addEventListener('click', () => {
+    formModal.showModal()
+})
+formClosebtn.addEventListener('click', () => {
+    formModal.close()
+})
+
+addProjctBtn.addEventListener('click', () => {
+    projectModal.showModal()
+})
+projectModalCloseBtn.addEventListener('click', () => {
+    projectModal.close()
+})
+
+submitPrjctBtn.addEventListener('click', addProject)
+
+function navigate(e){
+    nextPage = (e.target.classList.contains('project')) ? 'project' : e.target.id
         console.log(nextPage)
 
         if (nextPage === currentPage) return
 
         if (nextPage === 'Inbox') {currentPage = inboxPageLoad()} 
         if (nextPage === 'Tasks') {currentPage = tasksPageLoad()}
-    })
-})
-
-
-const formModal = document.querySelector('#modalDialog');
-const formClosebtn = document.querySelector('#closeModal');
-const newTaskBtn = document.querySelector('.newTaskBtn');
-
-newTaskBtn.addEventListener('click', () => {
-    formModal.showModal()
-})
-
-formClosebtn.addEventListener('click', () => {
-    formModal.close()
-})
+        if (nextPage === 'project') {currentPage = projectPageLoad(e)}
+}
+export {projectModal, navigate}
 

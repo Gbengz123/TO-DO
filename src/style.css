@@ -120,6 +120,10 @@ aside svg{
   cursor: pointer;
 }
 
+.side-nav >*{
+  pointer-events: none; /* Disables interaction for children */
+}
+
 .task-section .side-nav:hover, .project:hover {
  background-color: #4a607b;
 }
@@ -146,15 +150,24 @@ aside .project-section{
   font-size: 12px;
 }
 
-#modalDialog{
+#modalDialog, #project-dialog{
   border: none;
   margin: auto;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
 
-#modalDialog::backdrop{
+#modalDialog::backdrop, #project-dialog::backdrop{
   background: rgba(0, 0, 0, 0.4);
+}
+
+#add-project-modal{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  padding: 20px;
+  width: 400px;
 }
 
 form{
@@ -168,7 +181,7 @@ form{
   align-items: center;
 }
 
-form #closeModal{
+form #closeModal, #add-project-modal #close-prjct-Modal{
   position: absolute;
   top: 10px;     
   right: 15px;
@@ -183,7 +196,7 @@ form #closeModal{
   align-items: center;
 }
 
-form h2{
+form h2, #add-project-modal h2{
   font-size: 1.3em;
   text-align: center;
   font-weight: bold;
@@ -208,7 +221,7 @@ input, textarea, select{
   outline: none;
 }
 
-.form-grp > input[type='text'], .form-grp > textarea{
+.form-grp > input[type='text'], .form-grp > textarea, #add-project-modal input{
   background-color: #f3f4f6;
   border: none;
   border-radius: 10px;
@@ -216,18 +229,22 @@ input, textarea, select{
   resize: none;
 }
 
-.form-grp > input[type='text']{
-  width: 270px;
+.form-grp > input[type='text'], #add-project-modal input{
+  width: 280px;
   height: 40px;
 }
 
-form button[type='submit']{
+form button[type='submit'], #submit-project-button{
   width: 100px;
   height: 40px;
   background-color: #1e293b;
   color: white;
   text-align: center;
   border-radius: 10px;
+}
+
+#submit-project-button{
+  font-size: medium;
 }
 
 main{

@@ -1,15 +1,27 @@
 import { createTaskCard, createHeadnSection, showTaskDetail } from "./inbox";
 
+
 function tasksPageLoad(){
     createHeadnSection('Tasks')
 
-    const section = document.querySelector('section')
+    const projectsData = JSON.parse(localStorage.getItem('projectsData'))
 
-    // dynamically create project tasks
-    for (let i=0; i < 5; i++){
-        const projectTasks = createProjectCard()
-        section.appendChild(projectTasks)
-    }
+    const taskSection = document.querySelector('section')
+    let projectTask;
+
+    // dynamically load project tasks
+    projectsData.projects.forEach(project => {
+        const projectTasks = document.querySelectorAll('.project-tasks')
+        // check if is already diaplayed on the screen 
+        if (projectTasks){
+            projectTask = document.getElementById(`${project.name}-card`)
+            if (projectTask){
+                 return
+             }
+        }
+        projectTask = createProjectCard(project.name)
+        taskSection.appendChild(projectTask)
+    })
 
     const projectTasksHead = document.querySelectorAll('.project-tasks-head')
     
@@ -33,15 +45,16 @@ function tasksPageLoad(){
     return 'Tasks'
 }
 
-function createProjectCard(){
+function createProjectCard(projectName){
     const projectTask = document.createElement('div')
     projectTask.classList.add('project-tasks')
+    projectTask.id = `${projectName}-card`
 
     const projectTaskHead = document.createElement('div')
     projectTaskHead.classList.add('project-tasks-head')
     // create h1 for project title
     const h2 = document.createElement('h2');
-    h2.textContent = '#Project title';
+    h2.textContent = `# ${projectName}`;
     projectTaskHead.appendChild(h2);
     // create SVG icon
     const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -80,4 +93,4 @@ function createProjectCard(){
     return projectTask
 }
 
-export default tasksPageLoad
+export {tasksPageLoad, createProjectCard}
