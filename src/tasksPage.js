@@ -4,12 +4,13 @@ import { createTaskCard, createHeadnSection, showTaskDetail } from "./inbox";
 function tasksPageLoad(){
     createHeadnSection('Tasks')
 
+
     const projectsData = JSON.parse(localStorage.getItem('projectsData'))
 
     const taskSection = document.querySelector('section')
     let projectTask;
 
-    // dynamically load project tasks
+    // dynamically load project 
     projectsData.projects.forEach(project => {
         const projectTasks = document.querySelectorAll('.project-tasks')
         // check if is already diaplayed on the screen 
@@ -24,13 +25,22 @@ function tasksPageLoad(){
     })
 
     // Dynamically add tasks to specific project category
+    let taskCard
     projectsData.projects.forEach(project => {
         if (project.tasks.length > 0){
             project.tasks.forEach(task => {
-                console.log(task.project)
+                // selects the project it is under
                 const projectCard = document.querySelector(`#${task.project}-card`)
-                const taskCards = createTaskCard(task.title);
-                projectCard.querySelector('.task-container').appendChild(taskCards)
+
+                // checks if it already exist
+                taskCard = document.getElementById(`${task.title}-task`)
+                if (taskCard){
+                    return
+                }
+
+                // creates and adds to the project
+                taskCard = createTaskCard(task.title, task.description);
+                projectCard.querySelector('.task-container').appendChild(taskCard)
             })
         }
     })

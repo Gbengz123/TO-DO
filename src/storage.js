@@ -21,20 +21,6 @@ let projectsData = {
     ],
 }
 
-let allTasksData = {
-    "allTasks": [
-        { 
-            "Title": "Apple", 
-            "Description": "Red", 
-            "priority": "", 
-            "project" : "", 
-            "dateAdded" : "",
-            "dueDate:" : "",
-            "completed" : false
-        },
-    ]
-}
-
 // add projects data to local storage
 localStorage.setItem('porjectsData', JSON.stringify(projectsData));
 
@@ -126,7 +112,7 @@ function addTask(event){
     localStorage.setItem('projectsData', JSON.stringify(projectsData));
 
     // display task
-    displayTask(taskData.project, taskData.title, taskData.priority)
+    displayTask(taskData.project, taskData.title, taskData.description, taskData.priority)
 }
 
-export {allTasksData, projectsData, addProject, addTask}
+export {projectsData, addProject, addTask}

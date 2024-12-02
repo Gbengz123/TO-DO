@@ -55,7 +55,7 @@ function navigate(e){
 
         if (nextPage === 'Inbox') {currentPage = inboxPageLoad()} 
         if (nextPage === 'Tasks') {currentPage = tasksPageLoad()}
-        if (nextPage === 'project') {currentPage = projectPageLoad(e)}
+        if (nextPage === 'project') {currentPage = projectPageLoad(e.target.id)}
 }
 export {projectModal, formModal, navigate}
 

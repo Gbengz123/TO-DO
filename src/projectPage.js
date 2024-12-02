@@ -1,17 +1,32 @@
 import { createHeadnSection, createTaskCard, showTaskDetail } from "./inbox"
 
-function projectPageLoad(e){
+function projectPageLoad(Project){
     // creates head and section of the page
-    createHeadnSection(e.target.id);
+    createHeadnSection(Project);
 
     const section = document.querySelector('section')
 
-    // Dynamically create 5 task cards on the page
-    for (let i = 0; i < 2; i++) {
-        const taskCard = createTaskCard(); // Get the created task card
-        section.appendChild(taskCard);
-    }
+    let currentProject
+    const projectsData = JSON.parse(localStorage.getItem('projectsData'))
+    projectsData.projects.forEach(project => {
+        if (project.name === Project){
+            currentProject = project
+            return
+        }
+    })
 
+    let taskCard
+    currentProject.tasks.forEach(task => {
+        // checks if it already exist
+        taskCard = document.getElementById(`${task.title}-task`)
+        if (taskCard){
+            return
+        }
+
+        taskCard = createTaskCard(task.title, task.description)
+        section.appendChild(taskCard)
+    })
+    
     showTaskDetail()
 
     return 'Home'

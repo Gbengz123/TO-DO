@@ -1,6 +1,9 @@
 import { navigate } from ".";
 import { createProjectCard, tasksPageLoad } from "./tasksPage";
-import { createTaskCard, showTaskDetail } from "./inbox";
+import { inboxPageLoad } from "./inbox";
+import projectPageLoad from "./projectPage"
+
+
 
 function displayProject(projectName){
     const asideProjectSection = document.querySelector('.project-section')
@@ -45,21 +48,30 @@ function displayProject(projectName){
 
     // For displaying on taskpage
     const taskSection = document.querySelector('#Tasks-section')
-
+    // checks if we are in the task section so that we can reload the updated page with the new project
     if (taskSection){
         tasksPageLoad()
     }   
 }
 
-function displayTask(project, title, priority){
+function displayTask(project, title, description, priority){
     // display on task page
-    const projectCard = document.querySelector(`#${project}-card`)
-    if (projectCard){
-        const taskCard = createTaskCard(title)
-        projectCard.querySelector('.task-container').appendChild(taskCard)
-    }
+    const taskSection = document.querySelector('#Tasks-section')
+    if (taskSection){
+        tasksPageLoad()
+    } 
 
-    showTaskDetail()
+    // display on inbox page
+    const inboxSection = document.querySelector('#Inbox-section')
+    if (inboxSection){
+        inboxPageLoad()
+    } 
+
+    // display on particular page
+    const projectSection = document.querySelector(`#${project}-section`)
+    if (projectSection){
+        projectPageLoad(project)
+    } 
 }
 
 export {displayProject, displayTask}

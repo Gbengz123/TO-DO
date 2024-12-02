@@ -4,11 +4,27 @@ function inboxPageLoad(){
 
     const section = document.querySelector('section')
 
-    // Dynamically create 5 task cards on the page
-    for (let i = 0; i < 5; i++) {
-        const taskCard = createTaskCard(); // Get the created task card
-        section.appendChild(taskCard);
-    }
+    let allTasks = []
+    const projectsData = JSON.parse(localStorage.getItem('projectsData'))
+
+    // loops through and stores all tasks from each project in the list
+    projectsData.projects.forEach(project => {
+        project.tasks.forEach(task => {
+            allTasks.push(task)
+        })
+    })
+
+    let taskCard
+    allTasks.forEach(task => {
+        // checks if it already exist
+        taskCard = document.getElementById(`${task.title}-task`)
+        if (taskCard){
+            return
+        }
+
+        taskCard = createTaskCard(task.title, task.description)
+        section.appendChild(taskCard)
+    })
 
     showTaskDetail()
 
@@ -34,10 +50,11 @@ function createHeadnSection(heading){
 }
 
 // Function to create a task card
-function createTaskCard(title) {
+function createTaskCard(title, description) {
 
     const taskCard = document.createElement('div');
     taskCard.classList.add('task-card');
+    taskCard.id = `${title}-task`
 
     const taskCardHead = document.createElement('div');
     taskCardHead.classList.add('task-card-head');
@@ -71,7 +88,7 @@ function createTaskCard(title) {
     const taskCardDetails = document.createElement('div');
     taskCardDetails.classList.add('task-card-details');
     const p = document.createElement('p');
-    p.textContent = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam corrupti soluta quam ipsum, illum doloremque iste nostrum blanditiis excepturi eum dolores fugiat deleniti fuga et consequatur aperiam perspiciatis amet reprehenderit.';
+    p.textContent = description;
     taskCardDetails.appendChild(p);
     taskCard.appendChild(taskCardDetails);
 
